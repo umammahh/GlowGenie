@@ -1,5 +1,8 @@
 name: Daily Log Commit
 
+permissions:
+  contents: write   # 👈 Add this line!!
+
 on:
   schedule:
     - cron: "0 12 * * *" # runs every day at noon UTC
@@ -12,10 +15,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Ensure daily log file exists
-        run: |
-          touch daily-log.md
-
       - name: Update daily log
         run: |
           echo "Last update: $(date)" >> daily-log.md
@@ -27,3 +26,5 @@ jobs:
           git add daily-log.md
           git commit -m "chore: daily log update" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 👈 Also good practice
