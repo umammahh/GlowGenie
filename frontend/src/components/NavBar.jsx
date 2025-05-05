@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -13,8 +14,8 @@ const NavBar = () => {
   ];
 
   return (
-    <div className="bg-[#EDAA9F] font-poppins">
-      <nav className="bg-[#F9D0CE] py-4 px-8 rounded-full shadow-sm max-w-4xl mx-auto my-4">
+    <div className="bg-[#EDAA9F] font-poppins relative px-4">
+      <nav className="bg-[#F9D0CE] py-4 px-8 rounded-full shadow-sm max-w-4xl mx-auto my-3">
         <ul className="flex justify-center items-center space-x-8">
           {navItems.map((item) => (
             <li key={item.name}>
@@ -32,6 +33,12 @@ const NavBar = () => {
           ))}
         </ul>
       </nav>
+      <button
+        onClick={() => navigate("/login")}
+        className="p-2 hover:bg-[#F9D0CE] rounded-full transition-all duration-200 absolute right-8 top-1/2 transform -translate-y-1/2"
+      >
+        <FaUser className="text-gray-600 hover:text-gray-800 text-lg" />
+      </button>
     </div>
   );
 };
